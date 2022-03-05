@@ -1,4 +1,6 @@
+import pandas as pd
 import streamlit as st
+import plotly.express as px
 
 home_team = st.sidebar.text_input(
     'Home Team',
@@ -31,7 +33,32 @@ with col2:
     )
 
 # Add balloon celebration
-if home_score == 100:
+if home_score % 50 == 0 and home_score != 0:
     st.balloons()
-elif away_score == 100:
+elif away_score % 50 == 0 and away_score != 0:
     st.balloons()
+
+score_df = pd.DataFrame(
+    {
+        home_team: [home_score],
+        away_team: [away_score]
+    }
+)
+
+score_df = score_df.melt()
+
+
+fig = px.bar(
+    data_frame=score_df,
+    x='variable',
+    y='value',
+    color='variable',
+    labels={
+        'variable': '',
+        'value': ''
+    }
+)
+
+fig.update(layout_showlegend=False)
+
+st.plotly_chart(fig)
