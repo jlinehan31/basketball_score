@@ -1,7 +1,15 @@
 import streamlit as st
 
-home_team = st.sidebar.text_input('Home Team')
-away_team = st.sidebar.text_input('Away Team')
+home_team = st.sidebar.text_input(
+    'Home Team',
+    value='Home Team'
+)
+
+away_team = st.sidebar.text_input(
+    'Away Team',
+    value='Away Team'
+)
+
 # game_length
 # shot_clock
 # reset_button = st.sidebar.button('RESET')
